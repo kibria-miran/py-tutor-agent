@@ -3,4 +3,8 @@
 sandbox/
 logs/
 progress.json
+progress.json.bak
+progress.json.*
 __pycache__/
+.pytest_cache/
+*.py[cod]
