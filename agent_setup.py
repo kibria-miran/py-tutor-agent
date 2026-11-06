@@ -1,6 +1,7 @@
 import config
 import progress
 from smolagents import OpenAIServerModel, ToolCallingAgent
+from smolagents.monitoring import LogLevel
 from tools import read_lesson, run_python, scaffold_project, get_progress, web_search
 
 PROMPT_PATH = config.BASE_DIR / "prompts" / "system.md"
@@ -37,6 +38,7 @@ def build_agent(extra_tools=None) -> ToolCallingAgent:
         model=build_model(),
         max_steps=config.MAX_STEPS,
         instructions=instructions,
+        verbosity_level=LogLevel.ERROR,
     )
 
 

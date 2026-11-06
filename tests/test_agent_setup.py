@@ -19,6 +19,7 @@ def test_agent_registers_expected_tools(monkeypatch) -> None:
     assert {"read_lesson", "run_python", "scaffold_project", "get_progress"} <= names
     assert "save_progress" not in names
     assert "web_search" not in names
+    assert agent.logger.level.name == "ERROR"
 
 
 def test_web_search_registered_only_when_enabled(monkeypatch) -> None:
