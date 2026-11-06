@@ -73,3 +73,24 @@ def run_python(code: str) -> str:
             os.unlink(tmp.name)
         except OSError:
             pass
+
+
+import progress
+
+
+@tool
+def save_progress(topic: str, score: int, total: int) -> str:
+    """Record a quiz result for a lesson and mark it completed if the score passes.
+
+    Args:
+        topic: Exact lesson slug, for example 01_project_structure.
+        score: Number of correct answers.
+        total: Total number of questions.
+    """
+    return progress.record_quiz(topic, score, total)
+
+
+@tool
+def get_progress() -> str:
+    """Return a short human-readable summary of the learner's progress."""
+    return progress.summary()
