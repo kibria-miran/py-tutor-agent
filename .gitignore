@@ -1,0 +1,6 @@
+.env
+.venv/
+sandbox/
+logs/
+progress.json
+__pycache__/
