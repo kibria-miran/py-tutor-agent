@@ -200,7 +200,8 @@ class TutorApp:
                 f"(you said {said}; correct {question['answer']})."
             )
         parts.append(
-            "Explain each wrong answer briefly, using the lesson as context. "
+            "Explain each wrong answer in at most two sentences. "
+            "If you need context, call read_lesson for the slug at most once. "
             "Do not change any files."
         )
         explain_agent = self._build_agent()

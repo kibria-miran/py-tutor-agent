@@ -8,6 +8,7 @@ def test_model_forwards_retry_and_timeout(monkeypatch) -> None:
     model = agent_setup.build_model()
     assert model.client.max_retries == 3
     assert model.client.timeout == config.API_TIMEOUT
+    assert model.retryer.max_attempts == 1
 
 
 def test_agent_registers_expected_tools(monkeypatch) -> None:
@@ -36,3 +37,5 @@ def test_instructions_include_progress_summary(monkeypatch) -> None:
     agent = agent_setup.build_agent()
     assert "Learner progress:" in agent.instructions
     assert "Completed" in agent.instructions
+    assert "Available lesson slugs:" in agent.instructions
+    assert "02_env_and_config" in agent.instructions

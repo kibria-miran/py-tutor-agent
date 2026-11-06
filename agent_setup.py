@@ -18,6 +18,8 @@ def build_model() -> OpenAIServerModel:
         api_base=config.API_BASE,
         api_key=config.NVIDIA_API_KEY,
         client_kwargs={"max_retries": 3, "timeout": config.API_TIMEOUT},
+        # The OpenAI client already retries; smolagents' own retryer would stack.
+        retry=False,
     )
 
 
@@ -27,6 +29,8 @@ def build_agent(extra_tools=None) -> ToolCallingAgent:
         PROMPT_PATH.read_text(encoding="utf-8").strip()
         + "\n\nLearner progress: "
         + progress.summary()
+        + "\nAvailable lesson slugs: "
+        + ", ".join(progress.slugs())
     )
     tools = [read_lesson, run_python, scaffold_project, get_progress]
     if config.WEB_SEARCH_ENABLED:
