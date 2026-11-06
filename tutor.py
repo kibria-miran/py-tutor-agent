@@ -44,6 +44,8 @@ def setup_logging() -> None:
     stderr_handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
     log.addHandler(file_handler)
     log.addHandler(stderr_handler)
+    # smolagents logs each step to the console at INFO; our own log covers it.
+    logging.getLogger("smolagents").setLevel(logging.WARNING)
 
 
 def print_banner() -> None:
